@@ -1,0 +1,254 @@
+
+/*!40101 SET NAMES utf8mb4 */;
+
+/*!40101 SET SQL_MODE=''*/;
+
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`db` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+
+USE `db`;
+
+DROP TABLE IF EXISTS `Student`;
+CREATE TABLE `Student` (
+    `Id` INT(11) NOT NULL AUTO_INCREMENT,
+    `Firstname` CHAR(100) NOT NULL,
+    `Middlename` CHAR(100) NULL,
+    `Fullname` CHAR(100) NOT NULL,
+    `Lastname` CHAR(100) NOT NULL,
+    `Gender` CHAR(100) NOT NULL,
+    `DateOfBirth` DATETIME NULL,
+    `PlaceOfBirth` CHAR(100) NULL,
+    `MatNo` CHAR(70) NULL,
+    `Email` CHAR(70) NULL,
+    `MobilePhone` CHAR(15) NULL,
+    `HomePhone` CHAR(15) NULL,
+    `ModifiedDate` DATETIME NULL,
+    `Nationality` CHAR(100) NULL,
+    `State` CHAR(10) NULL,
+    `LGA` CHAR(10) NULL,
+    PRIMARY KEY (`Id`)
+)  ENGINE=INNODB AUTO_INCREMENT=3 DEFAULT CHARSET=UTF8MB4;
+
+DROP TABLE IF EXISTS `Lecturer`;
+CREATE TABLE `Lecturer` (
+    `Id` INT(11) NOT NULL AUTO_INCREMENT,
+    `FileNo` CHAR(50) NULL,
+    `Firstname` CHAR(100) NOT NULL,
+    `Middlename` CHAR(100) NULL,
+    `Fullname` CHAR(100) NOT NULL,
+    `Lastname` CHAR(100) NOT NULL,
+    `DateOfBirth` DATETIME NULL,
+    `PlaceOfBirth` CHAR(100) NULL,
+    `Email` CHAR(70) NULL,
+    `MobilePhone` CHAR(15) NULL,
+    `HomePhone` CHAR(15) NULL,
+    `Qualifications` CHAR(150) NULL,
+    `ModifiedDate` DATETIME NULL,
+    `Nationality` CHAR(100) NULL,
+    `State` CHAR(10) NULL,
+    `LGA` CHAR(10) NULL,
+    PRIMARY KEY (`Id`)
+)  ENGINE=INNODB AUTO_INCREMENT=3 DEFAULT CHARSET=UTF8MB4;
+
+    
+DROP TABLE IF EXISTS `GeneralInfo`;
+
+CREATE TABLE `GeneralInfo` (
+    `Id` INT(11) NOT NULL AUTO_INCREMENT,
+    `Name` CHAR(100) NOT NULL,
+    `State` CHAR(10) NULL,
+    `Address` CHAR(100) NULL,
+    PRIMARY KEY (`Id`)
+)  ENGINE=INNODB AUTO_INCREMENT=3 DEFAULT CHARSET=UTF8MB4;
+ 
+  DROP TABLE IF EXISTS `Faculty`;
+
+CREATE TABLE `Faculty` (
+    `Id` INT(11) NOT NULL AUTO_INCREMENT,
+    `Name` CHAR(100) NOT NULL,
+    `Description` TEXT NULL,
+    PRIMARY KEY (`Id`)
+)  ENGINE=INNODB AUTO_INCREMENT=3 DEFAULT CHARSET=UTF8MB4;
+
+
+  
+DROP TABLE IF EXISTS `SchoolCalendar`;
+
+CREATE TABLE `SchoolCalendar` (
+    `Id` INT(11) NOT NULL AUTO_INCREMENT,
+    `Title` CHAR(100) NOT NULL,
+    `StartDate` DATETIME NOT NULL,
+    `EndDate` DATETIME NOT NULL,
+    `Description` CHAR(100) NULL,
+    PRIMARY KEY (`Id`)
+)  ENGINE=INNODB AUTO_INCREMENT=3 DEFAULT CHARSET=UTF8MB4;
+
+  DROP TABLE IF EXISTS `Room`;
+
+CREATE TABLE `Room` (
+    `Id` INT(11) NOT NULL AUTO_INCREMENT,
+    `Room` CHAR(50) NULL,
+    `Building` CHAR(50) NULL,
+    `Location` CHAR(20) NULL,
+    `Facilities` CHAR(50) NULL,
+    PRIMARY KEY (`Id`)
+)  ENGINE=INNODB AUTO_INCREMENT=3 DEFAULT CHARSET=UTF8MB4;
+
+  DROP TABLE IF EXISTS `Semester`;
+
+CREATE TABLE `Semester` (
+    `Id` INT(11) NOT NULL AUTO_INCREMENT,
+    `Code` CHAR(10) NOT NULL,
+    `Description` TEXT NOT NULL,
+    `ModifiedDate` DATETIME NULL,
+    PRIMARY KEY (`Id`)
+)  ENGINE=INNODB AUTO_INCREMENT=3 DEFAULT CHARSET=UTF8MB4;
+
+  DROP TABLE IF EXISTS `StudentDetail`;
+  
+CREATE TABLE `StudentDetail` (
+    `Id` INT(11) NOT NULL AUTO_INCREMENT,
+    `Gender` CHAR(8) NULL,
+    `HeightFt` TINYINT NULL,
+    `HeightIn` TINYINT NULL,
+    `Mothername` CHAR(200) NULL,
+    `Fathername` CHAR(200) NULL,
+    `ModifiedDate` DATETIME NULL,
+    `CivilStatus` CHAR(20) NULL,
+    `Religion` CHAR(100) NULL,
+    `Guandian` CHAR(200) NULL,
+    `GuandianAddress` CHAR(100) NULL,
+    `GuandianTelephone` CHAR(15) NULL,
+    PRIMARY KEY (`Id`)
+)  ENGINE=INNODB AUTO_INCREMENT=3 DEFAULT CHARSET=UTF8MB4;
+
+  DROP TABLE IF EXISTS `StudentContacts`;
+
+CREATE TABLE `StudentContacts` (
+    `Id` INT(11) NOT NULL AUTO_INCREMENT,
+    `StudentId` INT NOT NULL,
+    `Name` CHAR(150) NOT NULL,
+    `Address` CHAR(100) NOT NULL,
+    `Mobile` CHAR(15) NOT NULL,
+    `Relationship` CHAR(20) NULL,
+    PRIMARY KEY (`Id`)
+)  ENGINE=INNODB AUTO_INCREMENT=3 DEFAULT CHARSET=UTF8MB4;
+
+  DROP TABLE IF EXISTS `Department`;
+
+CREATE TABLE `Department` (
+    `Id` INT NOT NULL AUTO_INCREMENT,
+    `FacultyId` INT NOT NULL,
+    `Name` CHAR(100) NULL,
+    `Description` TEXT NULL,
+    PRIMARY KEY (`Id`)
+)  ENGINE=INNODB AUTO_INCREMENT=3 DEFAULT CHARSET=UTF8MB4;
+
+  DROP TABLE IF EXISTS `Course`;
+
+CREATE TABLE `Course` (
+    `Id` INT(11) NOT NULL AUTO_INCREMENT,
+    `DepartmentId` INT NOT NULL,
+    `Code` CHAR(10) NOT NULL,
+    `Title` CHAR(100) NOT NULL,
+    `levelOfStudy` CHAR(5) NULL,
+    `Credits` TINYINT NULL,
+    `Description` CHAR(100) NULL,
+    PRIMARY KEY (`Id`)
+)  ENGINE=INNODB AUTO_INCREMENT=3 DEFAULT CHARSET=UTF8MB4;
+
+ DROP TABLE IF EXISTS `Unit`;
+
+CREATE TABLE `Unit` (
+    `Id` INT(11) NOT NULL AUTO_INCREMENT,
+    `DepartmentId` INT NOT NULL,
+    `Name` CHAR(50) NOT NULL,
+    `Description` CHAR(100) NULL,
+    PRIMARY KEY (`Id`)
+)  ENGINE=INNODB AUTO_INCREMENT=3 DEFAULT CHARSET=UTF8MB4;
+
+   DROP TABLE IF EXISTS `Programme`;
+   
+CREATE TABLE `Programme` (
+    `Id` INT(11) NOT NULL AUTO_INCREMENT,
+    `DepartmentId` INT NOT NULL,
+    `Name` CHAR(150) NULL,
+    `Code` CHAR(5) NULL,
+    `DegreeTitle` CHAR(150) NULL,
+    `NumberOfYears` TINYINT NULL,
+    PRIMARY KEY (`Id`)
+)  ENGINE=INNODB AUTO_INCREMENT=3 DEFAULT CHARSET=UTF8MB4;
+
+  DROP TABLE IF EXISTS `LecturerCourse`;
+
+CREATE TABLE `LecturerCourse` (
+    `Id` INT(11) NOT NULL AUTO_INCREMENT,
+    `LecturerId` INT NOT NULL,
+    `CourseId` INT NOT NULL,
+    PRIMARY KEY (`Id`)
+)  ENGINE=INNODB AUTO_INCREMENT=3 DEFAULT CHARSET=UTF8MB4;
+
+  DROP TABLE IF EXISTS `SchoolTimeTable`;
+
+CREATE TABLE `SchoolTimeTable` (
+    `Id` INT(11) NOT NULL AUTO_INCREMENT,
+    `Course` INT NOT NULL,
+    `StartDateTime` DATETIME NOT NULL,
+    `EndDateTime` DATETIME NOT NULL,
+    `RoomId` INT NOT NULL,
+    PRIMARY KEY (`Id`)
+)  ENGINE=INNODB AUTO_INCREMENT=3 DEFAULT CHARSET=UTF8MB4;
+
+  
+  DROP TABLE IF EXISTS `Registration`;
+CREATE TABLE `Registration` (
+    `Id` INT(11) NOT NULL AUTO_INCREMENT,
+    `ProgrammeId` INT NOT NULL,
+    `StartDate` DATETIME NOT NULL,
+    `EndDate` DATETIME NOT NULL,
+    `Remarks` TEXT NULL,
+    `ModifiedDate` DATETIME NULL,
+    `CreatedBy` CHAR(150) NULL,
+    `Modifiedby` CHAR(150) NULL,
+    `DateCreated` DATETIME NULL,
+    PRIMARY KEY (`Id`)
+)  ENGINE=INNODB AUTO_INCREMENT=3 DEFAULT CHARSET=UTF8MB4;
+
+   DROP TABLE IF EXISTS `Enrollment`;
+CREATE TABLE `Enrollment` (
+    `Id` INT(11) NOT NULL AUTO_INCREMENT,
+    `CourseID` INT NOT NULL,
+    `SemesterID` INT NOT NULL,
+    `SchoolYear` CHAR(5) NOT NULL,
+    `LevelOfStudy` CHAR(5) NOT NULL,
+    `Remarks` TEXT NULL,
+    `ModifiedDate` DATETIME NULL,
+    `CreatedBy` CHAR(10) NULL,
+    `Modifiedby` CHAR(10) NULL,
+    `DateCreated` DATETIME NULL,
+    PRIMARY KEY (`Id`)
+)  ENGINE=INNODB AUTO_INCREMENT=3 DEFAULT CHARSET=UTF8MB4;
+
+   DROP TABLE IF EXISTS `Assessment`;
+CREATE TABLE `Assessment` (
+    `Id` INT(11) NOT NULL AUTO_INCREMENT,
+    `StudentId` INT NOT NULL,
+    `CourseId` INT NOT NULL,
+    `LecturerId` INT NOT NULL,
+    `SemesterId` INT NOT NULL,
+    `SchoolYear` CHAR(5) NOT NULL,
+    `CourseWork` DECIMAL(5 , 2 ) NOT NULL,
+    `Attendance` DECIMAL(5 , 2 ) NOT NULL,
+    `TestScoreOne` DECIMAL(5 , 2 ) NOT NULL,
+    `TestScoreTwo` DECIMAL(5 , 2 ) NOT NULL,
+    `TestScoreThree` DECIMAL(5 , 2 ) NOT NULL,
+    `ExamScore` DECIMAL(5 , 2 ) NOT NULL,
+    `TotalMark` DECIMAL(5 , 2 ) NULL,
+    `Grade` CHAR(2) NULL,
+    `Remarks` CHAR(50) NULL,
+    PRIMARY KEY (`Id`)
+)  ENGINE=INNODB AUTO_INCREMENT=3 DEFAULT CHARSET=UTF8MB4;
+  
